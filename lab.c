@@ -89,7 +89,6 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
     if (payload_len > 0) {
         printf("Payload (%d bytes):\n", payload_len);
         for (int i = 0; i < payload_len; i++) {
-            // 가독성을 위해 출력 가능한 문자만 그대로 출력하고, 나머진 . 으로 표시
             printf("%c", payload[i]);
         }
         printf("\n");
