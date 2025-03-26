@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <pcap.h>
 #include <arpa/inet.h>
-#include <ctype.h>
 
 
 
@@ -91,7 +90,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
         printf("Payload (%d bytes):\n", payload_len);
         for (int i = 0; i < payload_len; i++) {
             // 가독성을 위해 출력 가능한 문자만 그대로 출력하고, 나머진 . 으로 표시
-            printf("%c", isprint(payload[i]) ? payload[i] : '.');
+            printf("%c", payload[i]);
         }
         printf("\n");
     }
@@ -107,7 +106,7 @@ int main()
   bpf_u_int32 net;
 
   // Step 1: Open live pcap session on NIC with name enp0s3
-  handle = pcap_open_live("lo", BUFSIZ, 1, 1000, errbuf);
+  handle = pcap_open_live("enp0s5", BUFSIZ, 1, 1000, errbuf);
   // nc로 열어서 127.0.0.1로 테스트할때는 lo(루프백) 인터페이스로 설정
   // 직접 패킷 잡아서 해볼려면 enp0s3처럼 실제 인터페이스로 설정
 
